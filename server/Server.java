@@ -29,6 +29,29 @@ public class Server {
       // write backs "Hello Client".  Write back Goodbye to terminate
       // both the client and server.  Print whatever the Client writes.
       
+      String str = "";
+		
+      int iterator = 0;
+      
+		while (str.toLowerCase().compareTo("quit") != 0) {
+			
+			iterator++;
+			
+			try {
+				str = (String) input.readObject();
+			}
+			catch (ClassNotFoundException | IOException ioe){
+				  System.out.println("Read object failure");
+			  }
+			
+			System.out.println(str);
+			
+			if (iterator == 5) {
+				output.writeObject("Goodbye");
+			}
+			else output.writeObject("Hello Client");
+
+		}
       
       // Close the connection
       connection.close();
